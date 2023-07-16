@@ -1,9 +1,12 @@
 const API = "https://rickandmortyapi.com/api";
-
 const cards = document.querySelector('.cards');
+const loadMore = document.querySelector('.load-more');
+let count = 1;
+
+getInfoRickAndMorty();
 
 async function getInfoRickAndMorty() {
-    const response = await fetch(`${API}/character`);
+    const response = await fetch(`${API}/character?page=${count}`);
     const data = await response.json();
 
     data.results.forEach(element => {
@@ -24,8 +27,10 @@ async function getInfoRickAndMorty() {
         img.src = element.image;
     });
 
-    console.log(data);
-    console.log(cards);
+    // console.log(data);
 }
 
-getInfoRickAndMorty();
+loadMore.addEventListener('click', () => {
+    count++;
+    getInfoRickAndMorty();
+});
