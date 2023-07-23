@@ -34,6 +34,11 @@ body {
     text-align: center;
 }
 
+.image {
+    border-top: #000000 3px solid;
+    border-bottom: #000000 3px solid;
+}
+
 .infos {
     display: flex;
     flex-direction: column;
