@@ -6,6 +6,13 @@
 
 body {
     background-color: #000000;
+    padding: 0 8vw;
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+    padding: 50px 0;
 }
 
 .cards {
@@ -18,24 +25,26 @@ body {
 .card {
     background-color: white;
     width: 300px;
-    height: 350px;
-    border-radius: 10px;
-}
-
-.image {
-    border-radius: 10px 10px 0px 0px;
-    margin-bottom: 10px;
+    border-radius: 5px;
 }
 
 .name {
-    margin-left: 10px;
-    font-weight: bold;
+    font-size: 24px;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.infos {
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+    margin: 10px 20px;
+    font-size: 18px;
 }
 
 .btn {
     display: flex;
     justify-content: center;
-
 }
 
 .load-more {
@@ -44,6 +53,7 @@ body {
     width: 200px;
     height: 40px;
     border: 1px solid white;
+    outline: none;
     border-radius: 5px;
     color: white;
     font-weight: bold;

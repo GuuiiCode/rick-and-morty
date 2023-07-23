@@ -1,36 +1,66 @@
 const API = "https://rickandmortyapi.com/api";
 const cards = document.querySelector('.cards');
 const loadMore = document.querySelector('.load-more');
-let count = 1;
 
-getInfoRickAndMorty();
-
-async function getInfoRickAndMorty() {
-    const response = await fetch(`${API}/character?page=${count}`);
-    const data = await response.json();
-
-    data.results.forEach(element => {
-        let p = document.createElement('p');
-        p.classList.add('name');
-
-        let img = document.createElement('img');
-        img.classList.add('image');
-
-        let div = document.createElement('div');
-        div.classList.add('card');
-
-        div.appendChild(img);
-        div.appendChild(p);
-        cards.appendChild(div);
-
-        p.innerHTML = element.name;
-        img.src = element.image;
-    });
-
-    // console.log(data);
+const filters = {
+    name: '',
+    species: '',
+    gender: '',
+    status: '',
+    page: 1
 }
 
+initialize();
+
 loadMore.addEventListener('click', () => {
-    count++;
-    getInfoRickAndMorty();
+    filters.page++;
+    initialize(filters);
 });
+
+async function initialize() {
+    const characters = await getCharacters(filters);
+    await render(characters);
+}
+
+async function getCharacters({ name, species, gender, status, page = 1 }) {
+    const response = await fetch(`${API}/character?name=${name}&species=${species}&gender=${gender}&status=${status}&page=${page}`);
+    const datas = await response.json();
+    return datas.results;
+}
+
+async function render(characters) {
+    characters.forEach(character => {
+        const { image, name, species, gender, status, card, infos } = createElements();
+        name.innerHTML = character.name;
+        image.src = character.image;
+        species.innerHTML = `<b>Species</b>: ${character.species}`;
+        gender.innerHTML = `<b>Gender</b>: ${character.gender}`;
+        status.innerHTML = `<b>Status</b>: ${character.status}`;
+
+        card.appendChild(name);
+        card.appendChild(image);
+        infos.appendChild(species);
+        infos.appendChild(gender);
+        infos.appendChild(status);
+        card.appendChild(infos);
+        cards.appendChild(card);
+    });
+}
+
+function createElements() {
+    return {
+        image: createElement('img', 'image'),
+        name: createElement('h3', 'name'),
+        species: createElement('span', 'species'),
+        gender: createElement('span', 'gender'),
+        status: createElement('span', 'status'),
+        card: createElement('div', 'card'),
+        infos: createElement('div', 'infos')
+    };
+}
+
+function createElement(elementType, className = defualt) {
+    const element = document.createElement(elementType);
+    element.classList.add(className);
+    return element;
+}
