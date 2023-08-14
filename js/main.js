@@ -2,9 +2,14 @@ const API = "https://rickandmortyapi.com/api";
 const cards = document.querySelector('.cards');
 const loadMore = document.querySelector('.load-more');
 
+const names = document.querySelector('#name');
+const species = document.querySelector('#species');
+const gender = document.querySelector('#gender');
+const status = document.querySelector('#status');
+
 const filters = {
     name: '',
-    species: '',
+    species: 'illness',
     gender: '',
     status: '',
     page: 1
@@ -16,6 +21,37 @@ loadMore.addEventListener('click', () => {
     filters.page++;
     initialize(filters);
 });
+
+species.addEventListener('change', async (e) => {
+    filters.species = e.target.value;
+    cards.innerHTML = '';
+    filters.page = 1;
+    initialize(filters);
+});
+
+gender.addEventListener('change', async (e) => {
+    filters.gender = e.target.value;
+    cards.innerHTML = '';
+    filters.page = 1;
+    initialize(filters);
+});
+
+status.addEventListener('change', async (e) => {
+    filters.status = e.target.value;
+    cards.innerHTML = '';
+    filters.page = 1;
+    initialize(filters);
+});
+
+names.addEventListener('keypress', async (e) => {
+    if (e.keyCode == 13) {
+        filters.name = e.target.value;
+        cards.innerHTML = '';
+        filters.page = 1;
+        initialize(filters);
+    }
+});
+
 
 async function initialize() {
     const characters = await getCharacters(filters);
