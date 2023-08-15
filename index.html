@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
 
     <link href="/css/style.css" rel="stylesheet">
 
@@ -18,33 +21,39 @@
 
     <main class="container">
         <section class="filters">
-            <input type="text" id="name" placeholder="Search by name" class="filter-name" />
-            <select name="species" id="species" class="filter">
-                <option value="" selected>Species</option>
-                <option value="Human">Human</option>
-                <option value="Humanoid">Humanoid</option>
-                <option value="Animal">Animal</option>
-                <option value="Alien">Alien</option>
-                <option value="Cronenberg">Cronenberg</option>
-                <option value="Mythological">Mythological</option>
-                <option value="Poopybutthole">Poopybutthole</option>
-                <option value="Robot">Robot</option>
-                <option value="Disease">Disease</option>
-                <option value="Unknown">Unknown</option>
-            </select>
-            <select name="gender" id="gender" class="filter">
-                <option value="" selected>Gender</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-                <option value="Genderless">Genderless </option>
-                <option value="Unknown">Unknown</option>
-            </select>
-            <select name="status" id="status" class="filter">
-                <option value="" selected>Status</option>
-                <option value="Alive">Alive</option>
-                <option value="Dead">Dead</option>
-                <option value="Unknown">Unknown</option>
-            </select>
+            <input type="text" id="search" placeholder="Search by name" />
+            <div class="btn-advanced-filters">
+                <img src="./imgs/sort.png">
+                ADVANCED FILTERS
+            </div>
+            <div class="advanced-filters">
+                <select name="species" id="species" class="filter">
+                    <option value="" selected>Species</option>
+                    <option value="Human">Human</option>
+                    <option value="Humanoid">Humanoid</option>
+                    <option value="Animal">Animal</option>
+                    <option value="Alien">Alien</option>
+                    <option value="Cronenberg">Cronenberg</option>
+                    <option value="Mythological">Mythological</option>
+                    <option value="Poopybutthole">Poopybutthole</option>
+                    <option value="Robot">Robot</option>
+                    <option value="Disease">Disease</option>
+                    <option value="Unknown">Unknown</option>
+                </select>
+                <select name="gender" id="gender" class="filter">
+                    <option value="" selected>Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Genderless">Genderless </option>
+                    <option value="Unknown">Unknown</option>
+                </select>
+                <select name="status" id="status" class="filter">
+                    <option value="" selected>Status</option>
+                    <option value="Alive">Alive</option>
+                    <option value="Dead">Dead</option>
+                    <option value="Unknown">Unknown</option>
+                </select>
+            </div>
         </section>
 
         <section class="cards"></section>
@@ -53,6 +62,10 @@
             <button class="load-more">Load more</button>
         </div>
     </main>
+
+    <footer>
+
+    </footer>
 
     <script src="/js/main.js"></script>
 </body>

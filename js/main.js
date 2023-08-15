@@ -2,20 +2,26 @@ const API = "https://rickandmortyapi.com/api";
 const cards = document.querySelector('.cards');
 const loadMore = document.querySelector('.load-more');
 
-const names = document.querySelector('#name');
+const search = document.querySelector('#search');
 const species = document.querySelector('#species');
 const gender = document.querySelector('#gender');
 const status = document.querySelector('#status');
+const btnAdvancedFilters = document.querySelector('.btn-advanced-filters');
 
 const filters = {
     name: '',
-    species: 'illness',
+    species: '',
     gender: '',
     status: '',
     page: 1
 }
 
 initialize();
+
+btnAdvancedFilters.addEventListener('click', () => {
+    const advancedFilters = document.querySelector('.advanced-filters');
+    advancedFilters.classList.toggle('activated');
+});
 
 loadMore.addEventListener('click', () => {
     filters.page++;
@@ -43,7 +49,7 @@ status.addEventListener('change', async (e) => {
     initialize(filters);
 });
 
-names.addEventListener('keypress', async (e) => {
+search.addEventListener('keyup', async (e) => {
     if (e.keyCode == 13) {
         filters.name = e.target.value;
         cards.innerHTML = '';
