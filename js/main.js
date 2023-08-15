@@ -49,7 +49,7 @@ status.addEventListener('change', async (e) => {
     initialize(filters);
 });
 
-search.addEventListener('keyup', async (e) => {
+search.addEventListener('keydown', async (e) => {
     if (e.keyCode == 13) {
         filters.name = e.target.value;
         cards.innerHTML = '';
