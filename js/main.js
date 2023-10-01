@@ -18,47 +18,6 @@ const filters = {
 
 initialize();
 
-btnAdvancedFilters.addEventListener('click', () => {
-    const advancedFilters = document.querySelector('.advanced-filters');
-    advancedFilters.classList.toggle('activated');
-});
-
-loadMore.addEventListener('click', () => {
-    filters.page++;
-    initialize(filters);
-});
-
-species.addEventListener('change', async (e) => {
-    filters.species = e.target.value;
-    cards.innerHTML = '';
-    filters.page = 1;
-    initialize(filters);
-});
-
-gender.addEventListener('change', async (e) => {
-    filters.gender = e.target.value;
-    cards.innerHTML = '';
-    filters.page = 1;
-    initialize(filters);
-});
-
-status.addEventListener('change', async (e) => {
-    filters.status = e.target.value;
-    cards.innerHTML = '';
-    filters.page = 1;
-    initialize(filters);
-});
-
-search.addEventListener('keydown', async (e) => {
-    if (e.keyCode == 13) {
-        filters.name = e.target.value;
-        cards.innerHTML = '';
-        filters.page = 1;
-        initialize(filters);
-    }
-});
-
-
 async function initialize() {
     const characters = await getCharacters(filters);
     await render(characters);
@@ -106,3 +65,53 @@ function createElement(elementType, className = defualt) {
     element.classList.add(className);
     return element;
 }
+
+function handleFilterChange(type, event) {
+    switch(type) {
+        case 'species':
+            filters.species = event;
+            break;
+        case 'gender':
+            filters.gender = event;
+            break;
+        case 'status':
+            filters.status = event;
+            break;
+        case 'search':
+            filters.name = event;
+            break;
+        default: 
+            break;
+    }
+
+    cards.innerHTML = '';
+    filters.page = 1;
+    initialize(filters);
+}
+
+species.addEventListener('change', async (e) => {
+    this.handleFilterChange('species', e.target.value);
+});
+
+gender.addEventListener('change', async (e) => {
+    this.handleFilterChange('gender', e.target.value);
+});
+
+status.addEventListener('change', async (e) => {
+    this.handleFilterChange('status', e.target.value);
+});
+
+search.addEventListener('keydown', async (e) => {
+    if (e.keyCode == 13) 
+        this.handleFilterChange('search', e.target.value);
+});
+
+btnAdvancedFilters.addEventListener('click', () => {
+    const advancedFilters = document.querySelector('.advanced-filters');
+    advancedFilters.classList.toggle('activated');
+});
+
+loadMore.addEventListener('click', () => {
+    filters.page++;
+    initialize(filters);
+});
